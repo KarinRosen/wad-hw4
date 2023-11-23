@@ -4,7 +4,6 @@ export default createStore({
   strict: true,
   state: {
     //postlist 
-
     posts: [
       { id: 1, userId: 1, profilePic: "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png", id: 1, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod nec neque non feugiat. Cras suscipit turpis sit amet lacus malesuada, in congue tortor hendrerit.", createTime: "2023-11-02T10:00:00", img: "https://i.insider.com/5d49f60636e03c268c7494d2?width=938&format=jpeg" },
       { id: 2, userId: 1, profilePic: "https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png", id: 2, body: "Pellentesque et tristique libero. Nulla facilisi. Integer id elit id massa fringilla gravida a quis turpis.", createTime: "2023-11-02T11:15:00", img: "https://upload.wikimedia.org/wikipedia/commons/d/de/Nokota_Horses_cropped.jpg" },

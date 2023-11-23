@@ -1,9 +1,9 @@
 <template>
     <header>
-        <h1>Your Website Name</h1>
+        <h1>Hello!</h1>
       <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">Sign up</router-link>
+        <router-link to="/" class="nav-link" :class="{ 'router-link-active': $route.path === '/' }">Home</router-link> |
+        <router-link to="/about" class="nav-link" :class="{ 'router-link-active': $route.path === '/about' }">Sign up</router-link>
       </nav>
     </header>
   </template>
@@ -11,7 +11,7 @@
 
 <style>
 header {
-  background-color: #918c8c;
+  background-color: #333;
   padding: 10px;
   text-align: center;
 }
@@ -35,4 +35,9 @@ router-link {
 router-link:hover {
   text-decoration: none;
 }
+.router-link-active {
+  color: #e92c51; 
+}
+
+
 </style>
