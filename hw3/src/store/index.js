@@ -24,12 +24,6 @@ export default createStore({
   mutations: {
   },
   actions: {
-
-    async fetchPosts({ commit }) {
-      // Assuming you have a service function to fetch posts
-      const posts = await fetchPosts(); // Implement fetchPosts function
-      commit('SET_POSTS', posts);
-    },
   },
   modules: {
   }
