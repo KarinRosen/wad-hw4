@@ -8,10 +8,10 @@
     </header>
   </template>
 
-  
+
 <style>
 header {
-  background-color: #333;
+  background-color: #918c8c;
   padding: 10px;
   text-align: center;
 }
@@ -27,12 +27,12 @@ nav {
 }
 
 router-link {
-  margin: 0 10px;
+  margin:  10px;
   color: #fff;
   text-decoration: none;
 }
 
 router-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 </style>
