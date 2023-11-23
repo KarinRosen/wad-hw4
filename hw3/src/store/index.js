@@ -29,17 +29,19 @@ export default createStore({
         post.likes++;
       }
     },
-    resetLikes(state, postId) {
-      const post = state.posts.find((post) => post.id === postId);
-      if (post) {
-        post.likes == 0;
-      }
+    resetLikes(state) {
+      state.posts.forEach(post => {
+        post.likes = 0;
+    })
     },
   },
 
   actions: {
     likePost({ commit }, postId) {
       commit('likePost', postId);
+    },
+    resetLikesAct({ commit }) {
+      commit('resetLikes');
     },
   },
   modules: {},

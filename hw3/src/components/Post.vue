@@ -31,6 +31,7 @@ export default {
       // Call Vuex action to like the post
       this.$store.dispatch('likePost', this.post.id);
     },
+    
     formatDate(date) {
       const options = {
         year: 'numeric',
