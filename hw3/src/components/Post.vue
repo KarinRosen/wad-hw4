@@ -117,5 +117,10 @@ img + p {
     display: block;
     margin-left: 10px;
 }
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
 
 </style>
