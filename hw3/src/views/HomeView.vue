@@ -10,13 +10,12 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 import Post from '@/components/Post.vue';
 
 export default {
   name: 'HomeView',
   components: 
-    {HelloWorld, Post},
+    {Post},
 
   computed: {
     posts() {
