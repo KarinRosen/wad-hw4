@@ -19,12 +19,12 @@ export default {
   computed: {
      // Computed property that retrieves the posts from the Vuex store
     posts() {
-      // Assuming you have a posts data property in your component
+    
       return this.$store.getters.posts;
       
     },
   },
-  methods: {
+  methods: { // resets all likes
     resetLikes: function(){
       this.$store.dispatch("resetLikesAct")
     }

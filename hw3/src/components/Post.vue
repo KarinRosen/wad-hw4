@@ -32,6 +32,7 @@ export default {
       this.$store.dispatch('likePost', this.post.id);
     },
     
+    
     formatDate(date) {
       const options = {
         year: 'numeric',
