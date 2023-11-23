@@ -32,7 +32,16 @@ export default {
       this.$store.dispatch('likePost', this.post.id);
     },
     formatDate(date) {
-      // Implement your date formatting logic
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZone: 'Europe/Tallinn', 
+        hour12: false,
+      };
+      return new Date(date).toLocaleDateString('en-EE', options);
     },
   },
   computed: {
