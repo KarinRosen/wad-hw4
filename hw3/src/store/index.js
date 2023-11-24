@@ -30,10 +30,9 @@ export default createStore({
       }
     },
     resetLikes(state) {
-      const post = state.posts.find((post) => post.id === postId);
-      if (post) {
+      state.posts.forEach(post => {
         post.likes = 0;
-      }
+    })
     },
   },
 
