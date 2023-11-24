@@ -1,6 +1,7 @@
 <template>
   <footer>
     <div class="footer-content">
+      <p>Web Application Development</p>
       <p>&copy; 2023</p>
     </div>
   </footer>
@@ -12,6 +13,7 @@
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    margin-top: auto;
   }
 
   .footer-content {

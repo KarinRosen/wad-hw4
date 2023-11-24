@@ -8,8 +8,8 @@
         <div class="post-date">{{ formatDate(post.createTime) }}</div>
       </div>
       <div class="post-content">
-        <p>{{ post.body }}</p>
         <img v-if="post.img" :src="post.img" alt="Post Image" />
+        <p>{{ post.body }}</p>
       </div>
       <div class="post-footer">
         <img class="likeButton" @click="likePost" :src="likePic" alt="Like Button" />
@@ -24,13 +24,15 @@
 <script>
 export default {
   props: {
-    post: Object, // Assuming you pass the post object as a prop
+    post: Object, // pass the post object as a prop
   },
   methods: {
     likePost() {
       // Call Vuex action to like the post
       this.$store.dispatch('likePost', this.post.id);
     },
+    
+    
     formatDate(date) {
       const options = {
         year: 'numeric',
@@ -78,7 +80,7 @@ export default {
 @media (max-width: 600px) {
     .column1,
     .column3 {
-        display: none;          
+        display: none;
 
     }
 }
@@ -86,7 +88,7 @@ export default {
 .post {
     margin: 20px; 
     padding: 10px;
-    background-color: #dddddd;
+    background-color: #d1e1eb;
     border-radius: 10px;
 }
 

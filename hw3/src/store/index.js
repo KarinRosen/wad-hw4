@@ -41,6 +41,9 @@ export default createStore({
     likePost({ commit }, postId) {
       commit('likePost', postId);
     },
+    resetLikesAct({ commit }) {
+      commit('resetLikes');
+    },
   },
   modules: {},
 });
