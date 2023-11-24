@@ -29,10 +29,10 @@ export default createStore({
         post.likes++;
       }
     },
-    resetLikes(state, postId) {
+    resetLikes(state) {
       const post = state.posts.find((post) => post.id === postId);
       if (post) {
-        post.likes == 0;
+        post.likes = 0;
       }
     },
   },
