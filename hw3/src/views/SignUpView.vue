@@ -83,7 +83,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   justify-content: space-between;

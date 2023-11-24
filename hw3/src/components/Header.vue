@@ -2,14 +2,14 @@
     <header>
         <h1>Hello!</h1>
       <nav>
-        <router-link to="/" class="nav-link" :class="{ 'router-link-active': $route.path === '/' }">Home</router-link> |
+        <router-link to="/" class="nav-link" :class="{ 'router-link-active': $route.path === '/' }">Home</router-link> 
         <router-link to="/about" class="nav-link" :class="{ 'router-link-active': $route.path === '/about' }">Sign up</router-link>
       </nav>
     </header>
   </template>
 
 
-<style>
+<style scoped>
 header {
   background-color: #333;
   padding: 10px;
@@ -34,9 +34,6 @@ router-link {
 
 router-link:hover {
   text-decoration: none;
-}
-.router-link-active {
-  color: #e92c51; 
 }
 
 
