@@ -2,8 +2,8 @@
     <header>
         <h1>Hello!</h1>
       <nav>
-        <router-link to="/" class="nav-link" :class="{ 'router-link-active': $route.path === '/' }">Home</router-link> 
-        <router-link to="/about" class="nav-link" :class="{ 'router-link-active': $route.path === '/about' }">Sign up</router-link>
+        <router-link to="/home" class="nav-link" :class="{ 'router-link-active': $route.path === '/home' }">Home</router-link> 
+        <router-link to="/contacts" class="nav-link" :class="{ 'router-link-active': $route.path === '/contacts' }">Contacts</router-link>
       </nav>
     </header>
   </template>

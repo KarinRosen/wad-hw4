@@ -76,7 +76,7 @@ export default defineComponent({
 
           this.passwordError = '';
 
-          this.$router.push('/');
+          this.$router.push('/login');
 
       },
   },
