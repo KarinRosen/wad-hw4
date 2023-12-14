@@ -18,7 +18,7 @@
           <br>
           <br>
           <center>
-            <button class="button" @click="validateForm">Login</button>
+            <button @click="LogIn"  class="button">Login</button>
             <span> or </span>
             <router-link to="/signup">
              <button class="button">Sign up</button>
@@ -30,58 +30,50 @@
       <div class="column column3"></div>
     </div>
   </template>
-  <script lang="js">
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    data() {
-        return {
-            email: '',
-            password: '',
-            passwordError: '',
-        };
-    },
-    methods: {
-        validateForm() {
-            if (this.email === '' || this.password ==='') {
-                alert('Please fill in both fields');
-                return;
-            }
-  
-            if (this.password.length < 8 || this.password.length >= 15) {
-                this.passwordError = 'Password must be between 8 and 15 characters';
-                return;
-            }
 
-  
-            if ((this.password.match(/[a-z]/g) || []).length < 2) {
-                this.passwordError = 'Password must include at least 2 lowercase alphabet characters.';
-                return;
-            }
-  
-            if (!/\d/.test(this.password)) {
-                this.passwordError = 'Password must include at least 1 number.';
-                return;
-            }
-  
-            if (!/^[A-Z]/.test(this.password)) {
-                this.passwordError = 'Password must start with an uppercase alphabet character.';
-                return;
-            }
-            
-            if (!/_/.test(this.password)) {
-                this.passwordError = 'Password must include the character "_"';
-                return;
-            }
-  
-            this.passwordError = '';
-  
-            this.$router.push('/');
-  
+
+<script>
+export default {
+name: "LogIn", 
+
+data: function() {
+    return {
+   email: '',
+   password: '',
+  }
+  },
+  methods: {
+
+
+LogIn() {
+      var data = {
+        email: this.email,
+        password: this.password
+      };
+      // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
+      fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+          body: JSON.stringify(data),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data);
+      this.$router.push("/");
+      location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error");
+      });
     },
-  });
-  </script>
+  }, 
+  }
+
+</script>
   
   <style scoped>
   .container {

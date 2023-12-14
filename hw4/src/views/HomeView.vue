@@ -1,34 +1,51 @@
 <template>
   <div class="home">
-    <!-- Iterate over the posts and render post component -->
+    <button v-if = "authResult" @click="Logout" class="button">Logout</button>
     <Post v-for="post in posts" :key="post.id" :post="post" />
-    <button @click="resetLikes" class="button">Reset Likes</button>
   </div>
 </template>
-
 <script>
 
-import Post from '@/components/Post.vue';
+import auth from "../auth";
 
 export default {
-  name: 'HomeView',
-  components: 
-    {Post},
-
-  computed: {
-     // Computed property that retrieves the posts from the Vuex store
-    posts() {
-      return this.$store.getters.posts;
-    },
+  name: "HomeView",
+  components: {
   },
-  methods: { // resets all likes
-    resetLikes: function(){
-      this.$store.dispatch("resetLikesAct")
+   data: function() {
+    return {
+    posts:[ ],
+    authResult: auth.authenticated()
     }
-  }
-  
+  },
+  methods: {
+    Logout() {
+      fetch("http://localhost:3000/auth/logout", {
+          credentials: 'include', //  Don't forget to specify this if you need cookies
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        console.log('jwt removed');
+        //console.log('jwt removed:' + auth.authenticated());
+        this.$router.push("/login");
+        //location.assign("/");
+      })
+      .catch((e) => {
+        console.log(e);
+        console.log("error logout");
+      });
+    },
+  }, 
+  mounted() {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((response) => response.json())
+        .then(data => this.posts = data)
+        .catch(err => console.log(err.message))
+    }
 };
 </script>
+
 
 <style scoped>
 .button {
