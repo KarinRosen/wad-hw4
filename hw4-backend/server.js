@@ -17,7 +17,7 @@ app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(express.json()); // Parses incoming requests with JSON payloads and is based on body-parser.
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 
-const secret = "gdgdhdbcb770785rgdzqws"; // use a stronger secret
+const secret = "gdgdhdbcb770785rgdzqws"; 
 const maxAge = 60 * 60; //unlike cookies, the expiresIn in jwt token is calculated by seconds not milliseconds
 
 const generateJWT = (id) => {
