@@ -3,10 +3,10 @@
       <div class="column column1">
         </div>
     <div class="column column2">
-      <div class="addpost">
-        <h2>A post</h2>
+      <div class="apost">
+        <h2>A Post</h2>
           <label for="body">Body:    </label>
-          <input v-model="body" type="bodu" name="bodu" required placeholder="body" class="body">
+          <input type="text" id="textbox" v-model="userInput" />
           <br>
           <br>
           <center>
@@ -60,6 +60,17 @@
     font-style: italic;
     
   }
+  .apost {
+  
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  background-color:#d1e1eb;
+  color:black;
+  font-size: larger;
+  margin: 20px; 
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
   
   .button {
     background-color: indigo;
