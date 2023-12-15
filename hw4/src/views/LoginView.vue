@@ -5,7 +5,6 @@
     <div class="column column2">
       <div class="login">
         <h2>Create your account</h2>
-        <form @submit.prevent="validateForm">
           <label for="email">Email:    </label>
           <input v-model="email" type="email" name="email" required placeholder="Email" class="email">
           <br>
@@ -24,7 +23,6 @@
              <button class="button">Sign up</button>
             </router-link>
             </center>
-        </form>
       </div>
     </div>
       <div class="column column3"></div>
