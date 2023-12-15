@@ -113,17 +113,6 @@ LogIn() {
   }
   
   
-  .signup {
-  
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    background-color:#d1e1eb;
-    color:black;
-    font-size: larger;
-    margin: 20px; 
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-  }
   .login {
   
   font-family:Georgia, 'Times New Roman', Times, serif;

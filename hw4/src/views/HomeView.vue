@@ -1,11 +1,23 @@
 <template>
-  <div class="home">
+  <div class="container">
+    <div class="column column1"> </div>
+  <div class="column column2"> 
     <button v-if = "authResult" @click="Logout" class="button">Logout</button>
-    <Post v-for="post in posts" :key="post.id" :post="post" />
+    <div class="post-list" v-for="post in posts"   :key="post.index">  
+      <div class="post">
+          <h3>  Title:  {{post.title}} </h3>
+          <p>  <b> Body: </b> {{post.body}} </p>
+      </div>
   </div>
+  <button v-if = "authResult" @click="Addpost" class="button">Add post</button>
+  <button v-if = "authResult" @click="Delete" class="button">Delete all</button>
+  <div class="column column3"></div>
+</div>
+</div>
 </template>
-<script>
 
+<script>
+// @ is an alias to /src
 import auth from "../auth";
 
 export default {
@@ -36,6 +48,10 @@ export default {
         console.log("error logout");
       });
     },
+    Addpost() {
+      this.$router.push("/addpost");
+        //location.assign("/");
+      }
   }, 
   mounted() {
         fetch('https://jsonplaceholder.typicode.com/posts')
