@@ -126,3 +126,108 @@ app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });
+
+app.post('/posts/create', async (req, res) => {
+    try {
+        const { content } = req.body;
+        const token = req.cookies.jwt;
+        
+        // Verify the token to get the user ID
+        const decoded = await jwt.verify(token, secret);
+        const userId = decoded.id;
+
+        // Insert the post into the database
+        const newPost = await pool.query(
+            "INSERT INTO posts (id, content) VALUES (gen_random_uuid(), $1) RETURNING *",
+            [content]
+        );
+
+        res.status(201).json({ post: newPost.rows[0] });
+    } catch (error) {
+        console.error(error.message);
+        res.status(400).send(error.message);
+    }
+});
+
+// Fetch all posts
+app.get('/posts', async (req, res) => {
+    try {
+        const posts = await pool.query("SELECT * FROM posts");
+        res.json({ posts: posts.rows });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});
+
+// Fetch a specific post by ID
+app.get('/posts/id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await pool.query("SELECT * FROM posts WHERE id = $1", [postId]);
+        
+        if (post.rows.length === 0) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        res.json({ post: post.rows[0] });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});
+
+// Update a post by ID
+app.put('/posts/id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const { content } = req.body;
+
+        const updatedPost = await pool.query(
+            "UPDATE posts SET content = $1 WHERE id = $2 RETURNING *",
+            [content, postId]
+        );
+
+        if (updatedPost.rows.length === 0) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        res.json({ post: updatedPost.rows[0] });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});
+
+// Delete a post by ID
+app.delete('/posts/id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+
+        const deletedPost = await pool.query("DELETE FROM posts WHERE id = $1 RETURNING *", [postId]);
+
+        if (deletedPost.rows.length === 0) {
+            return res.status(404).json({ error: "Post not found" });
+        }
+
+        res.json({ message: "Post deleted" });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});
+// Delete all posts
+app.delete('/posts', async (req, res) => {
+    try {
+        const deletedPosts = await pool.query("DELETE FROM posts RETURNING *");
+
+        if (deletedPosts.rows.length === 0) {
+            return res.status(404).json({ error: "No posts found to delete" });
+        }
+
+        res.json({ message: "All posts deleted" });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send(error.message);
+    }
+});

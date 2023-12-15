@@ -36,5 +36,17 @@ execute(createTblQuery).then(result => {
         console.log('Table "users" is created');
     }
 });
+const createPostsTableQuery = `
+    CREATE TABLE IF NOT EXISTS "posts" (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        content TEXT NOT NULL,
+        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );`;
+
+execute(createPostsTableQuery).then(result => {
+    if (result) {
+        console.log('Table "posts" is created');
+    }
+});
 
 module.exports = pool;
