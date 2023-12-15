@@ -4,16 +4,9 @@
   <div class="column column2"> 
     <div class="post">
       <div class="post-header">
-        <img class="profile-picture" :src="post.profilePic" alt="Profile Picture" />
-        <div class="post-date">{{ formatDate(post.createTime) }}</div>
       </div>
-      <div class="post-content">
-        <img v-if="post.img" :src="post.img" alt="Post Image" />
-        <p>{{ post.body }}</p>
-      </div>
+      <p> {{post.content}} </p>
       <div class="post-footer">
-        <img class="likeButton" @click="likePost" :src="likePic" alt="Like Button" />
-        {{ post.likes }} Likes
       </div>
     </div>
   </div>
@@ -24,33 +17,7 @@
 <script>
 export default {
   props: {
-    post: Object, // pass the post object as a prop
-  },
-  methods: {
-    likePost() {
-      // Call Vuex action to like the post
-      this.$store.dispatch('likePost', this.post.id);
-    },
-    
-    
-    formatDate(date) {
-      const options = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        timeZone: 'Europe/Tallinn', 
-        hour12: false,
-      };
-      return new Date(date).toLocaleDateString('en-EE', options);
-    },
-  },
-  computed: {
-    likePic() {
-      // Like pic from assets
-      return require('@/assets/like-icon.png');
-    },
+    post: Object, // Lisage komponendile post prop, et saaksite sellele ligi
   },
 };
 

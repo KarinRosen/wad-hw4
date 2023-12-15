@@ -1,36 +1,84 @@
 <template>
-  <div class="container">
-    <div class="column column1"> </div>
-  <div class="column column2"> 
-    <button v-if = "authResult" @click="Logout" class="button">Logout</button>
-    <div class="post-list" v-for="post in posts"   :key="post.index">  
-      <div class="post">
-          <h3>  Title:  {{post.title}} </h3>
-          <p>  <b> Body: </b> {{post.body}} </p>
-      </div>
+  <div class="home">
+    <button  @click="Logout" class="button">Logout</button>
+    <Post v-for="post in posts" :key="post.id" :post="post" />
+  <button @click="Addpost" class="button">Add post</button>
+  <button @click="Delete" class="button">Delete all</button>
   </div>
-  <button v-if = "authResult" @click="Addpost" class="button">Add post</button>
-  <button v-if = "authResult" @click="Delete" class="button">Delete all</button>
-  <div class="column column3"></div>
-</div>
-</div>
 </template>
 
 <script>
 // @ is an alias to /src
 import auth from "../auth";
+import Post from "@/components/Post";
 
 export default {
-  name: "HomeView",
   components: {
+    Post
   },
-   data: function() {
+  name: "HomeView",
+  data() {
     return {
-    posts:[ ],
-    authResult: auth.authenticated()
+      posts: [], // Lisa see, et hoida postitusi komponendi andmestruktuuris
+    };
+  },
+  async created() {
+    try {
+      const response = await fetch("http://localhost:3000/posts", {
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        this.posts = await response.json();
+      } else {
+        console.error("Failed to fetch posts");
+      }
+    } catch (error) {
+      console.error("Error fetching posts:", error);
     }
   },
   methods: {
+    async fetchPosts() {
+      try {
+        const response = await fetch("http://localhost:3000/posts", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          this.posts = data.posts;
+          console.log("Posts fetched successfully!");
+          
+        } else {
+          console.error("Failed to fetch posts");
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    },
+  async Delete() {
+    try {
+      const response = await fetch("http://localhost:3000/posts", {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        // Kui soovid, võid siin kutsuda ka meetodi, et uuesti postitusi laadida
+        this.fetchPosts(); // You need to define the fetchPosts method to update posts after deletion
+      } else {
+        console.error("Failed to delete posts");
+      }
+    } catch (error) {
+      console.error("Error deleting posts:", error);
+    }
+  },
     Logout() {
       fetch("http://localhost:3000/auth/logout", {
           credentials: 'include', //  Don't forget to specify this if you need cookies
@@ -54,11 +102,13 @@ export default {
       }
   }, 
   mounted() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+    this.fetchPosts();
+    fetch('http://localhost:3000/posts', { credentials: "include" })
         .then((response) => response.json())
-        .then(data => this.posts = data)
+        .then(data => this.posts = data.posts)
         .catch(err => console.log(err.message))
     }
+    
 };
 </script>
 
