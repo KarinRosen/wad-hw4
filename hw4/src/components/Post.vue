@@ -4,6 +4,7 @@
   <div class="column column2"> 
     <div class="post">
       <div class="post-header">
+        <div class="post-date">{{ formatDate(post.date) }}</div>
       </div>
       <p> {{post.content}} </p>
       <div class="post-footer">
@@ -19,7 +20,21 @@ export default {
   props: {
     post: Object, // Lisage komponendile post prop, et saaksite sellele ligi
   },
-};
+
+methods: {
+    formatDate(date) {
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        timeZone: 'Europe/Tallinn', 
+        hour12: false,
+      };
+      return new Date(date).toLocaleDateString('en-EE', options);
+  
+  }}}
 
 </script>
 
