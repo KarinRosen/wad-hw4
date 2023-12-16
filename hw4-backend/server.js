@@ -159,9 +159,13 @@ app.get('/posts', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+app.get('/posts/:id', async (req, res) => {
+    const postId = req.params.id;
+    return postId
+});
 
 // Fetch a specific post by ID
-app.get('/posts/id', async (req, res) => {
+app.get('/posts/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const post = await pool.query("SELECT * FROM posts WHERE id = $1", [postId]);
@@ -178,9 +182,9 @@ app.get('/posts/id', async (req, res) => {
 });
 
 // Update a post by ID
-app.put('/posts/id', async (req, res) => {
+app.put('/posts/:id', async (req, res) => {
     try {
-        const postId = req.params.id;
+        const postId = req.body.id; // Retrieve id from the request body
         const { content } = req.body;
 
         const updatedPost = await pool.query(
@@ -199,8 +203,9 @@ app.put('/posts/id', async (req, res) => {
     }
 });
 
+
 // Delete a post by ID
-app.delete('/posts/id', async (req, res) => {
+app.delete('/posts/:id', async (req, res) => {
     try {
         const postId = req.params.id;
 

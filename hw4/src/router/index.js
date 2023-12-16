@@ -7,7 +7,7 @@ import AddPostView from '../views/AddPostView.vue'
 import APostView from '../views/APostView.vue'
 import auth from "../auth"
 
-const routes = [
+const routes = [  
   {
     path: "/",
         name: "home",
@@ -47,9 +47,10 @@ const routes = [
   }
   },
   {
-    path: '/apost',
-    name: 'apost',
+    path: '/post/:id',
+    name: 'ApostView',
     component: APostView,
+    props: true, 
     beforeEnter: async(to, from, next) => {
       let authResult = await auth.authenticated();
       if (!authResult) {

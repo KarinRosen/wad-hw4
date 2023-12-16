@@ -1,19 +1,22 @@
 <template>
   <div class="container">
     <div class="column column1"> </div>
-  <div class="column column2"> 
-    <div class="post">
-      <div class="post-header">
-        <div class="post-date">{{ formatDate(post.date) }}</div>
-      </div>
-      <p> {{post.content}} </p>
-      <div class="post-footer">
-      </div>
+    <div class="column column2"> 
+      <router-link :to="'/post/' + post.id" class="post-link">
+        <div class="post">
+          <div class="post-header">
+            <div class="post-date">{{ formatDate(post.date) }}</div>
+          </div>
+          <p> {{post.content}} </p>
+          <div class="post-footer">
+          </div>
+        </div>
+      </router-link>
     </div>
+    <div class="column column3"></div>
   </div>
-  <div class="column column3"></div>
-</div>
-  </template>
+</template>
+
 
 <script>
 export default {
@@ -73,10 +76,6 @@ methods: {
     background-color: #d1e1eb;
     border-radius: 10px;
 }
-
-.post img {
-    max-width: 100%; 
-}
 img + p {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -87,19 +86,21 @@ img + p {
     align-items: center;
     margin-bottom: 10px;
 }
-.profile-picture {
-    width: 30px; 
-    height: 30px; 
-}
+
 .post-content p {
     display: block;
     text-align: left;
     margin-left: 10px;
     
 }
-.like-icon {
-    display: block;
-    margin-left: 10px;
+.post-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; 
+}
+
+.post-link:hover .post {
+  background-color: #a7c9d9;
 }
 .post-footer {
   display: flex;

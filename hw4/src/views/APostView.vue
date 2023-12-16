@@ -21,9 +21,88 @@
 
 
 <script>
+export default {
+  data() {
+    return {
+      userInput: "",
+    };
+  },
+  mounted() {
+    this.fetchPost(); // Load post data when the component is mounted
+  },
+  methods: {
+    async fetchPost() {
+      try {
+        const postId = this.$route.params.id;
+        const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
 
+        if (response.ok) {
+          const data = await response.json();
+          this.userInput = data.post.content;
+        } else {
+          console.error("Failed to fetch post");
+        }
+      } catch (error) {
+        console.error("Error fetching post:", error);
+      }
+    },
+    async Update() {
+      try {
+        const postId = this.$route.params.id;
+        const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            content: this.userInput,
+          }),
+        });
 
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Post updated:", data.post);
+        } else {
+          console.error("Failed to update post");
+        }
+      } catch (error) {
+        console.error("Error updating post:", error);
+      }
+    },
+    async Delete() {
+      try {
+        const postId = this.$route.params.id;
+        const response = await fetch(`http://localhost:3000/posts/${postId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Post deleted:", data.message);
+        } else {
+          console.error("Failed to delete post");
+        }
+      } catch (error) {
+        console.error("Error deleting post:", error);
+      }
+    },
+  },
+};
 </script>
+
+
+
   
   <style scoped>
   .container {
@@ -53,7 +132,6 @@
   
     }
   }
-  
   input {
     border-radius: 8px;
     border-color: indigo;
