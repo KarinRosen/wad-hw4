@@ -61,7 +61,6 @@ SignUp() {
       .then((data) => {
       console.log(data);
       this.$router.push("/");
-      //location.assign("/");
       })
       .catch((e) => {
         console.log(e);
