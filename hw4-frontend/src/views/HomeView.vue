@@ -87,7 +87,6 @@ export default {
       .then((data) => {
         console.log(data);
         console.log('jwt removed');
-        //console.log('jwt removed:' + auth.authenticated());
         this.$router.push("/login");
         //location.assign("/");
       })
@@ -130,6 +129,7 @@ export default {
   outline: none;
   margin-bottom: 24px;
 }
+
 
 .button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);

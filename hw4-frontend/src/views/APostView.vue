@@ -4,11 +4,11 @@
     <div class="column column2">
       <div class="apost">
         <h2>A Post</h2>
-        <label for="body">Body:</label>
-        <input type="text" id="textbox" v-model="userInput" />
-        <br />
-        <br />
-        <div>
+        <div class="textcontainer">
+          <label for="body">Body:</label>
+          <textarea type="text" id="textbox"  rows="3" v-model="userInput" />
+        </div>
+        <div class="buttoncontainer">
           <button @click="Update" class="button">Update</button>
           <button @click="Delete" class="button">Delete</button>
         </div>
@@ -136,6 +136,9 @@ input {
 }
 
 .apost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #d1e1eb;
   color: black;
@@ -154,15 +157,36 @@ input {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  
   border-radius: 4px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   outline: none;
+  margin-left: 20px;
+
 }
 
 .button:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.textcontainer {
+  display: flex;
+  justify-content: center;
+}
+#textbox {
+  margin-left: 20px;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+
 </style>

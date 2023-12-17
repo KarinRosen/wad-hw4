@@ -124,8 +124,9 @@ app.post('/auth/login', async(req, res) => {
 //logout a user = deletes the jwt
 app.get('/auth/logout', (req, res) => {
     console.log('delete jwt request arrived');
-    res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
+    res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send();
 });
+
 
 app.post('/posts/create', async (req, res) => {
     try {
@@ -199,8 +200,6 @@ app.put('/posts/:id', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
-
-
 
 // Delete a post by ID
 app.delete('/posts/:id', async (req, res) => {
