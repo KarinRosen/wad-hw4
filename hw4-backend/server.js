@@ -7,9 +7,9 @@ const jwt = require('jsonwebtoken');
 
 const port = process.env.PORT || 3000;
 
-const app = express();
+const app = express(); 
 
-app.use(cors({ origin: 'http://localhost:8081', credentials: true }));
+app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:8080', credentials: true }));
 // We need to include "credentials: true" to allow cookies to be represented  
 // Also "credentials: 'include'" need to be added in Fetch API in the Vue.js App
 //app.use(cors());
@@ -51,7 +51,7 @@ app.get('/auth/authenticate', async(req, res) => {
                 }
             })
         } else { //applies when the token does not exist
-            console.log('author is not authinticated');
+            console.log('author is not autheticated');
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
