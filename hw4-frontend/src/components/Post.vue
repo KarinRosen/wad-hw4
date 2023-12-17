@@ -99,7 +99,6 @@ img + p {
   display: block; 
 }
 
-
 .post-link:hover .post {
   background-color: #a7c9d9;
 }

@@ -17,7 +17,7 @@ const routes = [
             if (!authResult) {
                 next('/login')
             } else {
-                next();
+                next(); // if authenticated proceed to next route
             }
         }
     },

@@ -22,21 +22,6 @@ export default {
       posts: [], // Lisa see, et hoida postitusi komponendi andmestruktuuris
     };
   },
-  async created() {
-    try {
-      const response = await fetch("http://localhost:3000/posts", {
-        credentials: "include",
-      });
-
-      if (response.ok) {
-        this.posts = await response.json();
-      } else {
-        console.error("Failed to fetch posts");
-      }
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-    }
-  },
   methods: {
     async fetchPosts() {
       try {
@@ -94,7 +79,6 @@ export default {
     },
     Addpost() {
       this.$router.push("/addpost");
-        //location.assign("/");
       }
   }, 
   mounted() {
@@ -103,8 +87,7 @@ export default {
         .then((response) => response.json())
         .then(data => this.posts = data.posts)
         .catch(err => console.log(err.message))
-    }
-    
+    }  
 };
 </script>
 
