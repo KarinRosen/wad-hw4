@@ -51,7 +51,7 @@ methods: {
 
 .column {
     flex: 1;
-    text-align: center;
+   
 }
 
 .column2 {
@@ -87,17 +87,18 @@ img + p {
     margin-bottom: 10px;
 }
 
-.post-content p {
-    display: block;
-    text-align: left;
-    margin-left: 10px;
-    
+.post p {
+  display: block;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 30px;
 }
 .post-link {
   text-decoration: none;
   color: inherit;
   display: block; 
 }
+
 
 .post-link:hover .post {
   background-color: #a7c9d9;

@@ -2,8 +2,8 @@
   <div class="home">
     <button  @click="Logout" class="button">Logout</button>
     <Post v-for="post in posts" :key="post.id" :post="post" />
-  <button @click="Addpost" class="button">Add post</button>
-  <button @click="Delete" class="button">Delete all</button>
+    <button @click="Addpost" class="button">Add post</button>
+    <button @click="Delete" class="button">Delete all</button>
   </div>
 </template>
 
@@ -47,7 +47,6 @@ export default {
           },
           credentials: "include",
         });
-
         if (response.ok) {
           const data = await response.json();
           this.posts = data.posts;
@@ -70,8 +69,7 @@ export default {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        // Kui soovid, võid siin kutsuda ka meetodi, et uuesti postitusi laadida
-        this.fetchPosts(); // You need to define the fetchPosts method to update posts after deletion
+        this.fetchPosts(); 
       } else {
         console.error("Failed to delete posts");
       }
@@ -86,9 +84,8 @@ export default {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        console.log('jwt removed');
+        console.log('Jwt removed');
         this.$router.push("/login");
-        //location.assign("/");
       })
       .catch((e) => {
         console.log(e);

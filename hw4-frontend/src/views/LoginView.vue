@@ -1,33 +1,30 @@
 <template>
-    <div class="container">
-      <div class="column column1">
-        </div>
+  <div class="container">
+    <div class="column column1"></div>
     <div class="column column2">
       <div class="login">
-        <h2>Create your account</h2>
-          <label for="email">Email:    </label>
+        <h2>Log in</h2>
+        <div class="inputcontainer">
+          <label for="email">Email:</label>
           <input v-model="email" type="email" name="email" required placeholder="Email" class="email">
-          <br>
-          <br>
-          <label for="password">Password: </label>
+        </div>
+        <div class="inputcontainer">
+          <label for="password">Password:</label>
           <input v-model="password" type="password" name="password" required placeholder="Password">
-          <br>
-          <span v-if="passwordError" class="error">{{ passwordError }}</span>
-          <br>
-          <br>
-          <br>
-          <center>
-            <button @click="LogIn"  class="button">Login</button>
-            <span> or </span>
-            <router-link to="/signup">
-             <button class="button">Sign up</button>
-            </router-link>
-            </center>
+        </div>
+        <span v-if="passwordError" class="error">{{ passwordError }}</span>
+        <div class="buttoncontainer">
+          <button @click="LogIn" class="button">Login</button>
+          <span> or </span>
+          <router-link to="/signup">
+            <button class="button">Sign up</button>
+          </router-link>
+        </div>
       </div>
     </div>
-      <div class="column column3"></div>
-    </div>
-  </template>
+    <div class="column column3"></div>
+  </div>
+</template>
 
 
 <script>
@@ -63,7 +60,7 @@ data: function() {
       .then((response) => response.json())
       .then((data) => {
       console.log(data);
-      this.$router.push("/");
+     // this.$router.push("/");
       location.assign("/");
       })
       .catch((e) => {
@@ -109,15 +106,22 @@ data: function() {
     border-radius: 8px;
     border-color: indigo;
     font-style: italic;
+    margin:10px;
     
+  }
+
+  .inputcontainer {
+    margin-top: 20px;
   }
   .email {
     margin-left: 30px;
+  } 
+  .buttoncontainer {
+    margin-top:30px;
+    margin-bottom: 20px;
   }
   
-  
-  .login {
-  
+.login { 
   font-family:Georgia, 'Times New Roman', Times, serif;
   background-color:#d1e1eb;
   color:black;
@@ -127,8 +131,6 @@ data: function() {
   border-radius: 10px;
   text-align: center;
 }
-  
-  
   
   .button {
     background-color: indigo;

@@ -4,13 +4,13 @@
     <div class="column column2">
       <div class="addpost">
         <h2>Add Post</h2>
-        <label for="textbox">Body:</label>
-        <input type="text" id="textbox" v-model="userInput" />
-        <br />
-        <br />
-        <center>
+        <div class="textcontainer">
+        <label for="textarea">Body:</label>
+          <textarea type="text" id="textbox" rows="3" v-model="userInput" />
+        </div>
+        <div class="buttoncontainer">
           <button @click="Add" class="button">Add</button>
-        </center>
+        </div>
       </div>
     </div>
     <div class="column column3"></div>
@@ -110,12 +110,6 @@ export default {
   }
 }
 
-input {
-  border-radius: 8px;
-  border-color: indigo;
-  font-style: italic;
-}
-
 .addpost {
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: #d1e1eb;
@@ -141,6 +135,20 @@ input {
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   outline: none;
+}
+.textcontainer {
+  display: flex;
+  justify-content: center;
+}
+#textbox {
+  margin-left: 20px;
+  border-radius: 10px;
+}
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .button:hover {

@@ -89,7 +89,6 @@ export default {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Post deleted:", data.message);
           this.$router.push("/");
         } else {
           console.error("Failed to delete post");
@@ -157,7 +156,6 @@ input {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  
   border-radius: 4px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
@@ -185,7 +183,6 @@ input {
 #textbox {
   margin-left: 20px;
   border-radius: 10px;
-  width: fit-content;
 }
 
 

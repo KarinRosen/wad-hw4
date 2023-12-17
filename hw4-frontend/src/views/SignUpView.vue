@@ -1,29 +1,27 @@
 <template>
   <div class="container">
-    <div class="column column1">
-      </div>
-  <div class="column column2">
-    <div class="signup">
-      <h2>Create your account</h2>
-        <label for="email">Email:    </label>
-        <input v-model="email" type="email" name="email" required placeholder="Email" class="email">
-        <br>
-        <br>
-        <label for="password">Password: </label>
-        <input v-model="password" type="password" name="password" required placeholder="Password">
-        <br>
+    <div class="column column1"></div>
+    <div class="column column2">
+      <div class="signup">
+        <h2>Create your account</h2>
+        <div>
+          <label for="email">Email:</label>
+          <input v-model="email" type="email" name="email" required placeholder="Email" class="email">
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input v-model="password" type="password" name="password" required placeholder="Password">
+        </div>
         <span v-if="passwordError" class="error">{{ passwordError }}</span>
-        <br>
-        <br>
-        <br>
-        <center>
+        <div>
           <button @click="SignUp" class="button">SignUp</button>
-        </center>
+        </div>
+      </div>
     </div>
-  </div>
     <div class="column column3"></div>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -104,15 +102,13 @@ input {
   border-radius: 8px;
   border-color: indigo;
   font-style: italic;
+  margin: 10px;
   
 }
-.email {
-  margin-left: 30px;
-}
-
 
 .signup {
-
+  display: flex;
+  flex-direction: column;
   font-family:Georgia, 'Times New Roman', Times, serif;
   background-color:#d1e1eb;
   color:black;
@@ -120,10 +116,7 @@ input {
   margin: 20px; 
   padding: 10px;
   border-radius: 10px;
-  text-align: center;
 }
-
-
 
 .button {
   background-color: indigo;
@@ -138,7 +131,9 @@ input {
   cursor: pointer;
   -webkit-transition-duration: 0.4s; 
   transition-duration: 0.4s;
-  outline: none;
+  margin-top: 30px;
+  width: fit-content;
+  margin-bottom: 20px;
 }
 
 .button:hover {

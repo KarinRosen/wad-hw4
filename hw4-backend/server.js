@@ -160,12 +160,13 @@ app.get('/posts', async (req, res) => {
 app.get('/posts/:id', async (req, res) => {
     try {
         const postId = req.params.id;
+        // Query the database to retrieve the post
         const post = await pool.query("SELECT * FROM posts WHERE id = $1", [postId]);
         
         if (post.rows.length === 0) {
             return res.status(404).json({ error: "Post not found" });
         }
-
+        // If the post is found, send a json response with the post details
         res.json({ post: post.rows[0] });
     } catch (error) {
         console.error(error.message);
@@ -206,7 +207,7 @@ app.delete('/posts/:id', async (req, res) => {
         if (deletedPost.rows.length === 0) {
             return res.status(404).json({ error: "Post not found" });
         }
-        console.log("Post deleted")
+        //console.log("Post deleted")
         res.json({ message: "Post deleted" });
     } catch (error) {
         console.error(error.message);
